@@ -4,12 +4,12 @@
  * @brief The amount of inputs the perceptron has
  * 
  */
-#define AMOUNT_OF_INPUTS 2
+#define AMOUNT_OF_INPUTS 3
 /**
  * @brief The learning rate of the perceptron
  * 
  */
-#define LEARNING_RATE 0.1
+#define LEARNING_RATE 0.01
 
 #include <random>
 #include <time.h>

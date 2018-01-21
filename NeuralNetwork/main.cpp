@@ -10,7 +10,7 @@
  * @brief The amount of points to train the network with
  * 
  */
-#define AMOUNT_OF_POINTS 10
+#define AMOUNT_OF_POINTS 100
 /**
  * @brief The amount of stops in the training
  * 
@@ -35,7 +35,7 @@ void drawLabels(Point points[AMOUNT_OF_POINTS])
 	{
 		Point p = points[i];
 
-		COORD pos = { p.x, p.y };
+		COORD pos = { p.pixelX(), p.pixelY() };
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 
 		if (p.label == -1)
@@ -65,19 +65,27 @@ void drawScreen(Perceptron brain, Point* points, size_t l)
 	{
 		p = points[i];
 
-		float input[AMOUNT_OF_INPUTS] = { p.x, p.y };
+		float input[AMOUNT_OF_INPUTS] = { p.x, p.y, p.bias };
 		int guess = brain.guess(input);
 
-		COORD pos = { p.x, p.y };
+		COORD pos = { p.pixelX(), p.pixelY() };
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 
 		if (guess == p.label)
 		{
 			counter++;
-			printf("0");
+			if (p.label == -1)
+				printf("O");
+			else
+				printf("o");
 		}
 		else
-			printf("X");
+		{
+			if (p.label == -1)
+				printf("X");
+			else
+				printf("x");
+		}
 	}
 
 	COORD pos = { SIZE ,SIZE };
@@ -97,7 +105,7 @@ int main(int argc, char** argv)
 
 	for (size_t i = 0; i < AMOUNT_OF_POINTS; i++)
 	{
-		float inputs[AMOUNT_OF_INPUTS] = { points[i].x,points[i].y };
+		float inputs[AMOUNT_OF_INPUTS] = { points[i].x, points[i].y, points[i].bias };
 		brain.train(inputs, points[i].label);
 
 		if ((i % (AMOUNT_OF_POINTS / AMOUNT_OF_STOPS)) == 0)

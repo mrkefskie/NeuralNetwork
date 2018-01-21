@@ -19,16 +19,27 @@ public:
 	Point();
 	~Point();
 
+	int pixelX();
+	int pixelY();
+
+	float line(float x);
+
 	/**
 	 * @brief The X value
 	 * 
 	 */
-	int x;
+	float x;
 	/**
 	 * @brief The Y value
 	 * 
 	 */
-	int y;
+	float y;
+	/**
+	* @brief The bias value
+	*
+	*/
+	float bias;
+
 	/**
 	 * @brief The label it got with the X and Y
 	 * 
