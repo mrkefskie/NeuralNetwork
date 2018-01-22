@@ -6,6 +6,8 @@
 #include "Perceptron.h"
 #include "Point.h"
 
+#include <opencv2\core.hpp>
+
 /**
  * @brief The amount of points to train the network with
  * 

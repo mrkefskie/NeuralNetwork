@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NeuralNetwork", "NeuralNetwork.vcxproj", "{5D9EDDF3-0DC9-4320-B1E3-F6A45ED52BB0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "INSTALL", "..\thirdparty\opencv\build\INSTALL.vcxproj", "{B4F34632-FF5A-332E-96BC-8BC0E8AFBC1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenCV", "OpenCV", "{372F6B81-506A-49AB-A7B0-EA6C929643BC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZERO_CHECK", "..\thirdparty\opencv\build\ZERO_CHECK.vcxproj", "{39479DF6-BD4B-3297-859B-5E70EC3D9A8D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "..\thirdparty\opencv\build\ALL_BUILD.vcxproj", "{E9A7EAD2-181C-3E99-8368-3552287C9264}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +29,32 @@ Global
 		{5D9EDDF3-0DC9-4320-B1E3-F6A45ED52BB0}.Release|x64.Build.0 = Release|x64
 		{5D9EDDF3-0DC9-4320-B1E3-F6A45ED52BB0}.Release|x86.ActiveCfg = Release|Win32
 		{5D9EDDF3-0DC9-4320-B1E3-F6A45ED52BB0}.Release|x86.Build.0 = Release|Win32
+		{B4F34632-FF5A-332E-96BC-8BC0E8AFBC1F}.Debug|x64.ActiveCfg = Debug|x64
+		{B4F34632-FF5A-332E-96BC-8BC0E8AFBC1F}.Debug|x64.Build.0 = Debug|x64
+		{B4F34632-FF5A-332E-96BC-8BC0E8AFBC1F}.Debug|x86.ActiveCfg = Debug|x64
+		{B4F34632-FF5A-332E-96BC-8BC0E8AFBC1F}.Release|x64.ActiveCfg = Release|x64
+		{B4F34632-FF5A-332E-96BC-8BC0E8AFBC1F}.Release|x64.Build.0 = Release|x64
+		{B4F34632-FF5A-332E-96BC-8BC0E8AFBC1F}.Release|x86.ActiveCfg = Release|x64
+		{39479DF6-BD4B-3297-859B-5E70EC3D9A8D}.Debug|x64.ActiveCfg = Debug|x64
+		{39479DF6-BD4B-3297-859B-5E70EC3D9A8D}.Debug|x64.Build.0 = Debug|x64
+		{39479DF6-BD4B-3297-859B-5E70EC3D9A8D}.Debug|x86.ActiveCfg = Debug|x64
+		{39479DF6-BD4B-3297-859B-5E70EC3D9A8D}.Release|x64.ActiveCfg = Release|x64
+		{39479DF6-BD4B-3297-859B-5E70EC3D9A8D}.Release|x64.Build.0 = Release|x64
+		{39479DF6-BD4B-3297-859B-5E70EC3D9A8D}.Release|x86.ActiveCfg = Release|x64
+		{E9A7EAD2-181C-3E99-8368-3552287C9264}.Debug|x64.ActiveCfg = Debug|x64
+		{E9A7EAD2-181C-3E99-8368-3552287C9264}.Debug|x64.Build.0 = Debug|x64
+		{E9A7EAD2-181C-3E99-8368-3552287C9264}.Debug|x86.ActiveCfg = Debug|x64
+		{E9A7EAD2-181C-3E99-8368-3552287C9264}.Release|x64.ActiveCfg = Release|x64
+		{E9A7EAD2-181C-3E99-8368-3552287C9264}.Release|x64.Build.0 = Release|x64
+		{E9A7EAD2-181C-3E99-8368-3552287C9264}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B4F34632-FF5A-332E-96BC-8BC0E8AFBC1F} = {372F6B81-506A-49AB-A7B0-EA6C929643BC}
+		{39479DF6-BD4B-3297-859B-5E70EC3D9A8D} = {372F6B81-506A-49AB-A7B0-EA6C929643BC}
+		{E9A7EAD2-181C-3E99-8368-3552287C9264} = {372F6B81-506A-49AB-A7B0-EA6C929643BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09E74DE0-18D3-4A71-A94A-DDCDA48F7351}
