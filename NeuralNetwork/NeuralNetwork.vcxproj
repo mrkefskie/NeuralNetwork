@@ -73,6 +73,10 @@
     <IncludePath>..\thirdparty\opencv\build\install\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\thirdparty\opencv\build\install\x64\vc15\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>..\thirdparty\opencv\build\install\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\thirdparty\opencv\build\install\x64\vc15\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -114,6 +118,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opencv_core340.lib;opencv_highgui340.lib;opencv_imgproc340.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -129,8 +134,8 @@
     <ClCompile Include="Point.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\thirdparty\opencv\build\INSTALL.vcxproj">
-      <Project>{b4f34632-ff5a-332e-96bc-8bc0e8afbc1f}</Project>
+    <ProjectReference Include="..\thirdparty\opencv\build\ALL_BUILD.vcxproj">
+      <Project>{e9a7ead2-181c-3e99-8368-3552287c9264}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

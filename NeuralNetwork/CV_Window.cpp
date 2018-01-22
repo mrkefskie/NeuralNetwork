@@ -59,5 +59,5 @@ void GUI::CV_Window::render(Network::Perceptron b, Network::Point * p, size_t l)
 
 void GUI::CV_Window::setImage(int w, int h)
 {
-	image = cv::Mat(w, h, CV_8UC3);
+	image = cv::Mat(w, h, CV_8UC3, cv::Scalar(100, 100, 100));
 }
