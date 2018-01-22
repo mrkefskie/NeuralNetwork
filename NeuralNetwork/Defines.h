@@ -17,13 +17,13 @@
 * @brief The size of the 'screen'
 *
 */
-#define SIZE 600
+#define SIZE 1000
 
 /**
 * @brief The amount of points to train the network with
 *
 */
-#define AMOUNT_OF_POINTS 1000
+#define AMOUNT_OF_POINTS 10000
 /**
 * @brief The amount of stops in the training
 *

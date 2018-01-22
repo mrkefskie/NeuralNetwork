@@ -119,7 +119,11 @@ int main(int argc, char** argv)
 			brain.train(inputs, points[i].label);
 		}
 
-		printf("Iteration: %d\r\n", counter);
+		float a = -(brain.weights[0] / brain.weights[1]);
+		float b = -(brain.weights[2] / brain.weights[1]);
+
+
+		printf("Iteration: %d (%.5fx+%.5f)\r\n", counter, a, b);
 
 		window.render(brain, points, AMOUNT_OF_POINTS);
 		if (cv::waitKey(1) == 27)
@@ -132,6 +136,10 @@ int main(int argc, char** argv)
 		counter++;
 	}
 
+	float a = -(brain.weights[0] / brain.weights[1]);
+	float b = -(brain.weights[2] / brain.weights[1]);
+	printf("Final funcion: %.5fx+%.5f\r\n", a, b);
+
 	Point testP[AMOUNT_OF_TEST_POINTS];
 	window.render(brain, testP, AMOUNT_OF_TEST_POINTS);
 	if (cv::waitKey(0) == 27)
@@ -142,3 +150,4 @@ int main(int argc, char** argv)
 	system("PAUSE");
 	return 1;
 }
+

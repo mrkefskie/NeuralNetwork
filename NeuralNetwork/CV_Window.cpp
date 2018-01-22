@@ -52,8 +52,9 @@ void GUI::CV_Window::render(Network::Perceptron b, Network::Point * p, size_t l)
 
 	cv::line(image, cv::Point(p0.pixelX(), p0.pixelY()), cv::Point(p1.pixelX(), p1.pixelY()), cv::Scalar(255, 255, 0));
 
-
+	cv::namedWindow("Output");
 	cv::imshow("Output", image);
+	cv::moveWindow("Output", 800, 0);
 }
 
 void GUI::CV_Window::setImage(int w, int h)

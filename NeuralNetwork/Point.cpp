@@ -40,6 +40,6 @@ int Network::Point::pixelY()
 
 float Network::Point::line(float x)
 {
-	return -0.8 * x + 0.254;
+	return 0.8 * x - 0.254;
 }
 
