@@ -2,7 +2,7 @@
 
 
 
-Point::Point()
+Network::Point::Point()
 {
 	//srand(time(NULL));
 	x = -1.f + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (1.f - -1.f)));
@@ -14,25 +14,32 @@ Point::Point()
 	else label = -1;
 }
 
+Network::Point::Point(float x, float y)
+{
+	this->x = x;
+	this->y = y;
+	bias = 1;
+}
 
-Point::~Point()
+
+Network::Point::~Point()
 {
 }
 
-int Point::pixelX()
+int Network::Point::pixelX()
 {
 	int px = (x * (SIZE / 2)) + (SIZE / 2);
 	return px;
 }
 
-int Point::pixelY()
+int Network::Point::pixelY()
 {
 	int py = -(y * (SIZE / 2)) + (SIZE / 2);
 	return py;
 }
 
-float Point::line(float x)
+float Network::Point::line(float x)
 {
-	return 0.3 * x + 0.2;
+	return -0.8 * x + 0.254;
 }
 

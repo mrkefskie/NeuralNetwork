@@ -86,6 +86,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>opencv_core340d.lib;opencv_highgui340d.lib;opencv_imgproc340d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -114,10 +117,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CV_Window.h" />
+    <ClInclude Include="Defines.h" />
     <ClInclude Include="Perceptron.h" />
     <ClInclude Include="Point.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CV_Window.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Perceptron.cpp" />
     <ClCompile Include="Point.cpp" />

@@ -3,21 +3,21 @@
 
 #include <Windows.h>
 
+#include "Defines.h"
+
 #include "Perceptron.h"
 #include "Point.h"
 
+
+#ifdef OPENCV
+#include "CV_Window.h"
 #include <opencv2\core.hpp>
 
-/**
- * @brief The amount of points to train the network with
- * 
- */
-#define AMOUNT_OF_POINTS 100
-/**
- * @brief The amount of stops in the training
- * 
- */
-#define AMOUNT_OF_STOPS 5
+using namespace GUI;
+#endif
+
+
+using namespace Network;
 
 /**
  * @brief A counter to track how many hits we have
@@ -97,38 +97,47 @@ void drawScreen(Perceptron brain, Point* points, size_t l)
 
 int main(int argc, char** argv)
 {
+	CV_Window window;
+
+	window.setImage(SIZE, SIZE);
+
 	srand(time(NULL));
 	Perceptron brain;
 
 	Point points[AMOUNT_OF_POINTS];
 
-	drawLabels(points);
-	system("pause");
+	//drawLabels(points);
+	//system("pause");
+	
+	counter = 0;
 
-	for (size_t i = 0; i < AMOUNT_OF_POINTS; i++)
+	while (1)
 	{
-		float inputs[AMOUNT_OF_INPUTS] = { points[i].x, points[i].y, points[i].bias };
-		brain.train(inputs, points[i].label);
-
-		if ((i % (AMOUNT_OF_POINTS / AMOUNT_OF_STOPS)) == 0)
+		for (size_t i = 0; i < AMOUNT_OF_POINTS; i++)
 		{
-			counter = 0;
-			drawScreen(brain, points, AMOUNT_OF_POINTS);
-			printf("\r\nInterval[%d]\t=> Correct guesses: %d\r\n", i, counter);
-			system("pause");
+			float inputs[AMOUNT_OF_INPUTS] = { points[i].x, points[i].y, points[i].bias };
+			brain.train(inputs, points[i].label);
 		}
+
+		printf("Iteration: %d\r\n", counter);
+
+		window.render(brain, points, AMOUNT_OF_POINTS);
+		if (cv::waitKey(1) == 27)
+		{
+			cv::destroyAllWindows();
+			break;
+		}
+		//Sleep(100);
+
+		counter++;
 	}
 
-	/*counter = 0;
-	drawScreen(brain, points);
-	printf("\r\nInterval[%d]\t=> Correct guesses: %d\r\n", AMOUNT_OF_POINTS, counter);
-	*/
-	Point test[50];
-
-	counter = 0;
-	drawScreen(brain, test, 50);
-	printf("\r\nTestSet: %d correct\r\n", counter);
-
+	Point testP[AMOUNT_OF_TEST_POINTS];
+	window.render(brain, testP, AMOUNT_OF_TEST_POINTS);
+	if (cv::waitKey(0) == 27)
+	{
+		cv::destroyAllWindows();
+	}
 
 	system("PAUSE");
 	return 1;

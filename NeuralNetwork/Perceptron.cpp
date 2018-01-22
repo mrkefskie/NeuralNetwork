@@ -8,7 +8,7 @@ int sign(float n)
 }
 
 
-Perceptron::Perceptron()
+Network::Perceptron::Perceptron()
 {
 	srand(time(NULL));
 
@@ -19,11 +19,11 @@ Perceptron::Perceptron()
 }
 
 
-Perceptron::~Perceptron()
+Network::Perceptron::~Perceptron()
 {
 }
 
-int Perceptron::guess(float inputs[AMOUNT_OF_INPUTS])
+int Network::Perceptron::guess(float inputs[AMOUNT_OF_INPUTS])
 {
 	float sum = 0;
 	for (size_t i = 0; i < AMOUNT_OF_INPUTS; i++)
@@ -36,7 +36,7 @@ int Perceptron::guess(float inputs[AMOUNT_OF_INPUTS])
 	return output;
 }
 
-void Perceptron::train(float inputs[AMOUNT_OF_INPUTS], int target)
+void Network::Perceptron::train(float inputs[AMOUNT_OF_INPUTS], int target)
 {
 	int guess = this->guess(inputs);
 
