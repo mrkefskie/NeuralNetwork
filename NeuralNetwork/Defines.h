@@ -11,7 +11,7 @@
 * @brief The learning rate of the perceptron
 *
 */
-#define LEARNING_RATE 0.001
+#define LEARNING_RATE 0.000001
 
 /**
 * @brief The size of the 'screen'
@@ -34,4 +34,4 @@
 * @brief The amount of test points
 *
 */
-#define AMOUNT_OF_TEST_POINTS	200
+#define AMOUNT_OF_TEST_POINTS	2000

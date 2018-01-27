@@ -134,8 +134,8 @@
     <ClCompile Include="Point.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\thirdparty\opencv\build\ALL_BUILD.vcxproj">
-      <Project>{e9a7ead2-181c-3e99-8368-3552287c9264}</Project>
+    <ProjectReference Include="..\thirdparty\opencv\build\INSTALL.vcxproj">
+      <Project>{3e551002-017f-3d0a-a10d-38b26eb9c180}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
