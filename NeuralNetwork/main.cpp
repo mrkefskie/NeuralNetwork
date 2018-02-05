@@ -8,7 +8,7 @@
 
 #include "GUI\SimpleScreen.h"
 
-#include "Utilities\Matrix.h"
+#include "Matrix\Matrix.h"
 
 #define AMOUNT_OF_TRAINING_POINTS 10000
 
