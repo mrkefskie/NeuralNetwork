@@ -13,15 +13,24 @@ void GUI::SimpleScreen::render(NeuralNetwork::Node n, Data::Point *dp, unsigned 
 	// Clear the image
 	setImage(SIZE, SIZE);
 
-	float x0 = -1;
-	float x1 = 1;
-	float y0 = Data::DivindingLines::straightLine(x0);
-	float y1 = Data::DivindingLines::straightLine(x1);
+	float x0 = -1.f;
+	float x1 = 1.f;
+	float y0, y1;
 
-	pixelPoint p0 = convertToScreen(x0, y0);
-	pixelPoint p1 = convertToScreen(x1, y1);
+	pixelPoint p0, p1;
 
-	cv::line(_image, cv::Point(p0.pixelX, p0.pixelY), cv::Point(p1.pixelX, p1.pixelY), cv::Scalar(255, 0, 0));
+	for (unsigned long i = 0; i < SIZE; i++)
+	{
+		x0 = ((float)i / (SIZE / 2.f)) - 1.f;
+		x1 = ((float)(i + 1.f) / (SIZE / 2.f)) - 1.f;
+		y0 = Data::DivindingLines::WeirdLine(x0);
+		y1 = Data::DivindingLines::WeirdLine(x1);
+
+		p0 = convertToScreen(x0, y0);
+		p1 = convertToScreen(x1, y1);
+
+		cv::line(_image, cv::Point(p0.pixelX, p0.pixelY), cv::Point(p1.pixelX, p1.pixelY), cv::Scalar(255, 0, 0));
+	}
 
 	// Draw the points
 	for (unsigned long i = 0; i < l; i++)
@@ -47,8 +56,18 @@ void GUI::SimpleScreen::render(NeuralNetwork::Node n, Data::Point *dp, unsigned 
 	p0 = convertToScreen(x0, y0);
 	p1 = convertToScreen(x1, y1);
 
-	cv::line(_image, cv::Point(p0.pixelX, p0.pixelY), cv::Point(p1.pixelX, p1.pixelY), cv::Scalar(0, 255, 0));
+	for (unsigned long i = 0; i < SIZE; i++)
+	{
+		x0 = ((float)i / (SIZE / 2.f)) - 1.f;
+		x1 = ((float)(i + 1.f) / (SIZE / 2.f)) - 1.f;
+		y0 = -(n.getWeights(0) / n.getWeights(1))*x0 - (n.getWeights(2) / n.getWeights(1));
+		y1 = -(n.getWeights(0) / n.getWeights(1))*x1 - (n.getWeights(2) / n.getWeights(1));
 
+		p0 = convertToScreen(x0, y0);
+		p1 = convertToScreen(x1, y1);
+
+		cv::line(_image, cv::Point(p0.pixelX, p0.pixelY), cv::Point(p1.pixelX, p1.pixelY), cv::Scalar(255, 255, 0));
+	}
 	cv::namedWindow("Output");
 	cv::imshow("Output", _image);
 }

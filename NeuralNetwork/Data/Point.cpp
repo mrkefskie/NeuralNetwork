@@ -7,7 +7,7 @@ Data::Point::Point()
 
 	_bias = 1.f;
 
-	float dividing = DivindingLines::straightLine(_x);
+	float dividing = DivindingLines::WeirdLine(_x);
 	if (_y > dividing) _label = 1.f;
 	else _label = -1.f;
 }
@@ -16,7 +16,7 @@ Data::Point::Point(float x, float y) : _x(x), _y(y)
 {
 	_bias = 1.f;
 
-	float dividing = DivindingLines::straightLine(x);
+	float dividing = DivindingLines::WeirdLine(x);
 	if (y > dividing) _label = 1.f;
 	else _label = -1.f;
 }
