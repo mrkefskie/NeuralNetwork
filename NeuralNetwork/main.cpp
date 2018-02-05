@@ -8,10 +8,34 @@
 
 #include "GUI\SimpleScreen.h"
 
+#include "Utilities\Matrix.h"
+
 #define AMOUNT_OF_TRAINING_POINTS 10000
 
 int main(int argc, char** argv)
 {
+	srand(time(NULL));
+	Utilities::Matrix m1(2, 3);
+	m1.randomize();
+	m1.printToCLI();
+	m1.add(2);
+	m1.printToCLI();
+
+	Utilities::Matrix m2(2, 3);
+	m2.randomize();
+	m2.printToCLI();
+
+	Utilities::Matrix m3;
+	m3 = Utilities::Matrix::add(m1, m2);
+
+	m1.add(m2);
+	m1.printToCLI();
+
+	m3.printToCLI();
+
+
+
+
 	NeuralNetwork::Node n(2, NeuralNetwork::ACTIVATION_TYPE::SIGN, 0.000001);
 	Data::Point* p = (Data::Point*)malloc(sizeof(Data::Point) * AMOUNT_OF_TRAINING_POINTS);
 

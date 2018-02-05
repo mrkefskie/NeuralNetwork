@@ -128,6 +128,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NeuralNetwork\ActivationFunctions.cpp" />
     <ClCompile Include="NeuralNetwork\Node.cpp" />
+    <ClCompile Include="Utilities\Matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\thirdparty\opencv\build\INSTALL.vcxproj">
@@ -140,6 +141,7 @@
     <ClInclude Include="GUI\SimpleScreen.h" />
     <ClInclude Include="NeuralNetwork\ActivationFunctions.h" />
     <ClInclude Include="NeuralNetwork\Node.h" />
+    <ClInclude Include="Utilities\Matrix.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
