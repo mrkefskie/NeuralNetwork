@@ -3,11 +3,17 @@
 
 namespace Data
 {
+	typedef enum
+	{
+		STRAIGHT,
+		PARABOLIC
+	} LINE_TYPE;
+
 	class DivindingLines
 	{
 	public:
 		static float straightLine(float x);
-		static float WeirdLine(float x);
+		static float Parabolic(float x);
 	};
 }
 

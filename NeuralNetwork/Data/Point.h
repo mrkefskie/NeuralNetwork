@@ -10,6 +10,7 @@ namespace Data
 	{
 	public:
 		Point();
+		Point(Data::LINE_TYPE type);
 		Point(float x, float y);
 
 		float getX() { return _x; }
@@ -18,11 +19,15 @@ namespace Data
 
 		float getLabel() { return _label; }
 
+		Data::LINE_TYPE getLineType() { return _lineType; }
+
 	private:
 		float _x;
 		float _y;
 		float _bias;
 		float _label;
+
+		Data::LINE_TYPE _lineType;
 	};
 }
 
