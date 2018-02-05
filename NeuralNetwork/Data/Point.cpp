@@ -31,6 +31,9 @@ Data::Point::Point(Data::LINE_TYPE type) : _lineType(type)
 	case PARABOLIC:
 		dividing = DivindingLines::Parabolic(_x);
 		break;
+	case SQRT:
+		dividing = DivindingLines::squareRoot(_x);
+		break;
 	default:
 		dividing = DivindingLines::straightLine(_x);
 		break;

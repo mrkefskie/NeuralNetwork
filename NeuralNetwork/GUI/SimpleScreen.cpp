@@ -33,6 +33,10 @@ void GUI::SimpleScreen::render(NeuralNetwork::Node n, Data::Point *dp, unsigned 
 				y0 = Data::DivindingLines::Parabolic(x0);
 				y1 = Data::DivindingLines::Parabolic(x1);
 				break;
+			case Data::SQRT:
+				y0 = Data::DivindingLines::squareRoot(x0);
+				y1 = Data::DivindingLines::squareRoot(x1);
+				break;
 			default:
 				break;
 			}
@@ -76,10 +80,10 @@ void GUI::SimpleScreen::render(NeuralNetwork::Node n, Data::Point *dp, unsigned 
 		}
 	}
 	
-	if (lineType != Data::STRAIGHT)
+	//if (lineType != Data::STRAIGHT)
 	{
 	}
-	else
+	//else
 	{
 		x0 = -1.f;
 		x1 = 1.f;

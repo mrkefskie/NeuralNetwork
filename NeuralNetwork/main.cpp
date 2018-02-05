@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 
 	for (unsigned long i = 0; i < AMOUNT_OF_TRAINING_POINTS; i++)
 	{
-		p[i] = Data::Point();
+		p[i] = Data::Point(Data::STRAIGHT);
 	}
 
 	GUI::SimpleScreen screen;
