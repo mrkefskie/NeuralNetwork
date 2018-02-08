@@ -18,12 +18,15 @@
     <ClCompile Include="Matrix\Matrix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Exceptions\MatrixExceptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Matrix\Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix\MatrixExceptions.h">
+    <ClInclude Include="Exceptions\MatrixExceptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

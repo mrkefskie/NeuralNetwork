@@ -5,7 +5,7 @@
 #include <random>
 #include <time.h>
 
-//#include "MatrixExceptions.h"
+#include "../Exceptions/MatrixExceptions.h"
 
 namespace Utilities
 {
@@ -32,6 +32,13 @@ namespace Utilities
 		void add(Matrix n);
 		Matrix operator+(Matrix n);
 		void operator+=(Matrix n);
+
+		static Matrix transpose(Matrix m);
+		Matrix transpose();
+		
+
+
+
 
 		void printToCLI();
 

@@ -27,13 +27,32 @@ int main(int argc, char** argv)
 	m2.printToCLI();
 
 	Utilities::Matrix m3;
-	//m3 = Utilities::Matrix::add(m1, m2);
-	m3 = m1 + m2;
+	Utilities::Matrix m4;
 
-	m1 += m2;
+	try
+	{
+		m3 = m1 + m2;
+	}
+	catch (Utilities::matrixException &mE)
+	{
+		printf("%s\r\n", mE.what());
+	}
+
+	try
+	{
+		m1 += m2;
+	}
+	catch (Utilities::matrixException &mE)
+	{
+		printf("%s\r\n", mE.what());
+	}
+
 	m1.printToCLI();
 
 	m3.printToCLI();
+
+	m4 = m3.transpose();
+	m4.printToCLI();
 
 	system("pause");
 	return 1;
