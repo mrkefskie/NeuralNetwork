@@ -18,7 +18,8 @@ int main(int argc, char** argv)
 	Utilities::Matrix m1(2, 3);
 	m1.randomize();
 	m1.printToCLI();
-	m1.add(2);
+	//m1.add(2);
+	m1 += 2;
 	m1.printToCLI();
 
 	Utilities::Matrix m2(2, 3);
@@ -26,12 +27,16 @@ int main(int argc, char** argv)
 	m2.printToCLI();
 
 	Utilities::Matrix m3;
-	m3 = Utilities::Matrix::add(m1, m2);
+	//m3 = Utilities::Matrix::add(m1, m2);
+	m3 = m1 + m2;
 
-	m1.add(m2);
+	m1 += m2;
 	m1.printToCLI();
 
 	m3.printToCLI();
+
+	system("pause");
+	return 1;
 
 
 
@@ -72,6 +77,6 @@ int main(int argc, char** argv)
 		counter++;
 	}
 
- 	system("pause");
+	system("pause");
 	return 1;
 }

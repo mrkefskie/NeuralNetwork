@@ -58,25 +58,50 @@ void Utilities::Matrix::add(Utilities::Matrix n)
 	}
 }
 
-Utilities::Matrix Utilities::Matrix::add(Utilities::Matrix a, Utilities::Matrix b)
+
+Utilities::Matrix Utilities::Matrix::operator+(const float n)
 {
-	if (a.getCols() != b.getCols())
-		throw 1;
-	if (a.getRows() != b.getRows())
-		throw 2;
-
-	Matrix result(a.getRows(), b.getCols());
-
-	for (unsigned long i = 0; i < result.getRows(); i++)
+	Matrix result(_rows, _cols);
+	for (unsigned long i = 0; i < _rows; i++)
 	{
-		for (unsigned long j = 0; j < result.getCols(); j++)
+		for (unsigned long j = 0; j < _cols; j++)
 		{
-			result.setData(i, j, a.getData(i, j) + b.getData(i, j));
+			result.setData(i, j, _data[i][j] + n);
 		}
 	}
 
 	return result;
 }
+
+void Utilities::Matrix::operator+=(const float n)
+{
+	add(n);
+}
+
+
+Utilities::Matrix Utilities::Matrix::operator+(Matrix n)
+{
+	if (!checkSize(ADDITION, n))
+		throw 1;
+
+	Matrix result(_rows, _cols);
+	for (unsigned long i = 0; i < _rows; i++)
+	{
+		for (unsigned long j = 0; j < _cols; j++)
+		{
+			result.setData(i, j, _data[i][j] + n.getData(i, j));
+		}
+	}
+
+	return result;
+}
+
+void Utilities::Matrix::operator+=(Matrix n)
+{
+	add(n);
+}
+
+
 
 void Utilities::Matrix::printToCLI()
 {
@@ -90,4 +115,30 @@ void Utilities::Matrix::printToCLI()
 	}
 
 	printf("\r\n");
+}
+
+
+bool Utilities::Matrix::checkSize(Utilities::MatrixOperations MO, Utilities::Matrix a)
+{
+	return checkSize(MO, *this, a);
+}
+
+bool Utilities::Matrix::checkSize(Utilities::MatrixOperations MO, Utilities::Matrix a, Utilities::Matrix b)
+{
+	switch (MO)
+	{
+	case ADDITION:
+		if (a.getRows() != b.getRows())
+			return false;
+		if (a.getCols() != b.getCols())
+			return false;
+		break;
+	case MULTIPLICATION:
+		break;
+	default:
+		return false;
+		break;
+	}
+
+	return true;
 }

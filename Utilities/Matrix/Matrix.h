@@ -5,8 +5,17 @@
 #include <random>
 #include <time.h>
 
+//#include "MatrixExceptions.h"
+
 namespace Utilities
 {
+	typedef enum
+	{
+		ADDITION,
+		SUBTRACTION,
+		MULTIPLICATION
+	} MatrixOperations;
+
 	class Matrix
 	{
 	public:
@@ -17,11 +26,12 @@ namespace Utilities
 		void randomize();
 
 		void add(const float n);
+		Matrix operator+(const float n);
+		void operator+=(const float n);
+
 		void add(Matrix n);
-
-		static Matrix add(Matrix a, Matrix b);
-
-		
+		Matrix operator+(Matrix n);
+		void operator+=(Matrix n);
 
 		void printToCLI();
 
@@ -33,6 +43,10 @@ namespace Utilities
 		float getData(unsigned int r, unsigned int c) { return _data[r][c]; }
 		void setData(unsigned int r, unsigned int c, float data) { _data[r][c] = data; }
 	private:
+
+		bool checkSize(MatrixOperations MO, Matrix a);
+		bool checkSize(MatrixOperations MO, Matrix a, Matrix b);
+
 		unsigned int _rows;
 		unsigned int _cols;
 
