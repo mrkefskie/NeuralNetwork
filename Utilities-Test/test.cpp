@@ -204,3 +204,23 @@ TEST(MATRIX, MultiplyMatrixWithMatrix)
 		}
 	}
 }
+
+TEST(MATRIX, FromArray)
+{
+	unsigned long l = 5;
+	float* data = (float*)malloc(sizeof(float) * l);
+
+	for (unsigned long i = 0; i < l; i++)
+	{
+		data[i] = (i * 10.f) + 3.f;
+	}
+
+	Utilities::Matrix m = Utilities::Matrix::fromArray(data, l);
+
+	ASSERT_EQ(l, m.getRows());
+
+	for (unsigned long i = 0; i < l; i++)
+	{
+		ASSERT_FLOAT_EQ((i * 10.f) + 3.f, m.getData(i, 0));
+	}
+}
