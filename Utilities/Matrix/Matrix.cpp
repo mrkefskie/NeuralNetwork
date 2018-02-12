@@ -31,6 +31,18 @@ Utilities::Matrix::~Matrix()
 {
 }
 
+Utilities::Matrix Utilities::Matrix::fromArray(const float * data, unsigned long l)
+{
+	Matrix result(l, 1);
+
+	for (unsigned long i = 0; i < l; i++)
+	{
+		result.setData(i, 0, data[i]);
+	}
+
+	return result;
+}
+
 void Utilities::Matrix::randomize()
 {
 	for (unsigned long i = 0; i < _rows; i++)
@@ -248,7 +260,7 @@ Utilities::Matrix Utilities::Matrix::operator*(Utilities::Matrix n)
 			{
 				float a = _data[i][k];
 				float b = n.getData(k, j);
-				
+
 				res += a * b;
 			}
 			result.setData(i, j, res);
@@ -258,25 +270,6 @@ Utilities::Matrix Utilities::Matrix::operator*(Utilities::Matrix n)
 	return result;
 }
 #pragma endregion
-
-/*void multiply(Utilities::Matrix n)
-{
-	if (checkSize(MULTIPLICATION, n))
-	{
-		throw Utilities::matrixException("Matrix exception: Multiplication, matrices do not have the same size.\r\n");
-	}
-
-	for (unsigned long i = 0; i < _rows; i++)
-	{
-		for (unsigned long j = 0; j < n.getCols; j++)
-		{
-
-		}
-	}
-}*/
-
-
-
 
 #pragma region Utilities
 Utilities::Matrix Utilities::Matrix::transpose(Utilities::Matrix m)

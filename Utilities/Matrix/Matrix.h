@@ -23,6 +23,8 @@ namespace Utilities
 		Matrix(unsigned int rows, unsigned int cols);
 		~Matrix();
 
+		static Matrix fromArray(const float* data, unsigned long l);
+
 		void randomize();
 
 		
