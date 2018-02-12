@@ -43,6 +43,23 @@ Utilities::Matrix Utilities::Matrix::fromArray(const float * data, unsigned long
 	return result;
 }
 
+float* Utilities::Matrix::toArray()
+{
+	float* result = (float*)malloc(sizeof(float) * _rows * _cols);
+
+	unsigned long counter = 0;
+
+	for (unsigned long i = 0; i < _rows; i++)
+	{
+		for (unsigned long j = 0; j < _cols; j++)
+		{
+			result[counter++] = _data[i][j];
+		}
+	}
+
+	return result;
+}
+
 void Utilities::Matrix::randomize()
 {
 	for (unsigned long i = 0; i < _rows; i++)
@@ -52,6 +69,15 @@ void Utilities::Matrix::randomize()
 			_data[i][j] = (rand() / (float)RAND_MAX * 2) - 1.f;
 		}
 	}
+}
+
+Utilities::Matrix Utilities::Matrix::operator=(Utilities::Matrix m)
+{
+	_rows = m.getRows();
+	_cols = m.getCols();
+	_data = m.getData();
+
+	return *this;
 }
 
 #pragma region Addition

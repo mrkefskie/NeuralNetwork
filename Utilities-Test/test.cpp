@@ -224,3 +224,23 @@ TEST(MATRIX, FromArray)
 		ASSERT_FLOAT_EQ((i * 10.f) + 3.f, m.getData(i, 0));
 	}
 }
+
+TEST(MATRIX, ToArray)
+{
+	unsigned long l = 6;
+
+	Utilities::Matrix m(l, 1);
+
+	for (unsigned long i = 0; i < m.getRows(); i++)
+	{
+		m.setData(i, 0, (i * 10.f) + 3.f);
+	}
+
+	float* data = m.toArray();
+
+	for (unsigned long i = 0; i < l; i++)
+	{
+		ASSERT_FLOAT_EQ((i * 10.f) + 3.f, m.getData(i, 0));
+	}
+
+}

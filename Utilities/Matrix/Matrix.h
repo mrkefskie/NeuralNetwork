@@ -24,6 +24,7 @@ namespace Utilities
 		~Matrix();
 
 		static Matrix fromArray(const float* data, unsigned long l);
+		float* toArray();
 
 		void randomize();
 
@@ -44,6 +45,8 @@ namespace Utilities
 		void operator*=(const float n);
 		Matrix operator*(Matrix n);
 		void operator*=(Matrix n);
+
+		Matrix operator=(Matrix m);
 
 
 
