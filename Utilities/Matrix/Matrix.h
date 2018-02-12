@@ -25,23 +25,31 @@ namespace Utilities
 
 		void randomize();
 
-		void add(const float n);
+		
 		Matrix operator+(const float n);
 		void operator+=(const float n);
-
-		void add(Matrix n);
 		Matrix operator+(Matrix n);
 		void operator+=(Matrix n);
+
+		
+		Matrix operator-(const float n);
+		void operator-=(const float n);
+		Matrix operator-(Matrix n);
+		void operator-=(Matrix n);
+
+
+		Matrix operator*(const float n);
+		void operator*=(const float n);
+		Matrix operator*(Matrix n);
+		void operator*=(Matrix n);
+
+
 
 		static Matrix transpose(Matrix m);
 		Matrix transpose();
 		
 
-
-
-
 		void printToCLI();
-
 
 		unsigned int getRows() const { return _rows; }
 		unsigned int getCols() const { return _cols; }
@@ -50,6 +58,14 @@ namespace Utilities
 		float getData(unsigned int r, unsigned int c) { return _data[r][c]; }
 		void setData(unsigned int r, unsigned int c, float data) { _data[r][c] = data; }
 	private:
+		void add(const float n);
+		void add(Matrix n);
+
+		void subtract(const float n);
+		void subtract(Matrix n);
+
+		void multiply(const float n);
+
 
 		bool checkSize(MatrixOperations MO, Matrix a);
 		bool checkSize(MatrixOperations MO, Matrix a, Matrix b);

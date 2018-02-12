@@ -121,6 +121,160 @@ void Utilities::Matrix::operator+=(Matrix n)
 }
 #pragma endregion
 
+#pragma region Subtraction
+void Utilities::Matrix::subtract(const float n)
+{
+	for (unsigned long i = 0; i < _rows; i++)
+	{
+		for (unsigned long j = 0; j < _cols; j++)
+		{
+			_data[i][j] -= n;
+		}
+	}
+}
+
+void Utilities::Matrix::subtract(Utilities::Matrix n)
+{
+	if (!checkSize(SUBTRACTION, n))
+	{
+		throw Utilities::matrixException("Matrix exception: ElementWise Subtraction, matrices do not have the same size.\r\n");
+	}
+
+	for (unsigned long i = 0; i < _rows; i++)
+	{
+		for (unsigned long j = 0; j < _cols; j++)
+		{
+			_data[i][j] -= n.getData(i, j);
+		}
+	}
+
+}
+
+Utilities::Matrix Utilities::Matrix::operator-(const float n)
+{
+	Matrix result(_rows, _cols);
+	for (unsigned long i = 0; i < _rows; i++)
+	{
+		for (unsigned long j = 0; j < _cols; j++)
+		{
+			result.setData(i, j, _data[i][j] - n);
+		}
+	}
+
+	return result;
+}
+
+void Utilities::Matrix::operator-=(const float n)
+{
+	subtract(n);
+}
+
+Utilities::Matrix Utilities::Matrix::operator-(Matrix n)
+{
+	if (!checkSize(SUBTRACTION, n))
+	{
+		throw Utilities::matrixException("Matrix exception: ElementWise Subtraction, matrices do not have the same size.\r\n");
+	}
+
+	Matrix result(_rows, _cols);
+	for (unsigned long i = 0; i < _rows; i++)
+	{
+		for (unsigned long j = 0; j < _cols; j++)
+		{
+			result.setData(i, j, _data[i][j] - n.getData(i, j));
+		}
+	}
+
+	return result;
+}
+
+void Utilities::Matrix::operator-=(Matrix n)
+{
+	if (!checkSize(SUBTRACTION, n))
+	{
+		throw Utilities::matrixException("Matrix exception: ElementWise Addition, matrices do not have the same size.\r\n");
+	}
+
+	subtract(n);
+}
+#pragma endregion
+
+#pragma region Multiplication
+void Utilities::Matrix::multiply(const float n)
+{
+	for (unsigned long i = 0; i < _rows; i++)
+	{
+		for (unsigned long j = 0; j < _cols; j++)
+		{
+			_data[i][j] *= n;
+		}
+	}
+}
+
+Utilities::Matrix Utilities::Matrix::operator*(const float n)
+{
+	Matrix result(_rows, _cols);
+	for (unsigned long i = 0; i < _rows; i++)
+	{
+		for (unsigned long j = 0; j < _cols; j++)
+		{
+			result.setData(i, j, _data[i][j] * n);
+		}
+	}
+
+	return result;
+}
+
+void Utilities::Matrix::operator*=(const float n)
+{
+	multiply(n);
+}
+
+Utilities::Matrix Utilities::Matrix::operator*(Utilities::Matrix n)
+{
+	if (!checkSize(MULTIPLICATION, n))
+	{
+		throw Utilities::matrixException("Matrix exception: Multiplication, Matrices cannot be multiplied\r\n");
+	}
+
+	Matrix result(_rows, n.getCols());
+
+	for (unsigned long i = 0; i < result.getRows(); i++)
+	{
+		for (unsigned long j = 0; j < result.getCols(); j++)
+		{
+			float res = 0.f;
+			for (unsigned long k = 0; k < _cols; k++)
+			{
+				float a = _data[i][k];
+				float b = n.getData(k, j);
+				
+				res += a * b;
+			}
+			result.setData(i, j, res);
+		}
+	}
+
+	return result;
+}
+#pragma endregion
+
+/*void multiply(Utilities::Matrix n)
+{
+	if (checkSize(MULTIPLICATION, n))
+	{
+		throw Utilities::matrixException("Matrix exception: Multiplication, matrices do not have the same size.\r\n");
+	}
+
+	for (unsigned long i = 0; i < _rows; i++)
+	{
+		for (unsigned long j = 0; j < n.getCols; j++)
+		{
+
+		}
+	}
+}*/
+
 
 
 
@@ -142,7 +296,7 @@ Utilities::Matrix Utilities::Matrix::transpose(Utilities::Matrix m)
 
 Utilities::Matrix Utilities::Matrix::transpose()
 {
-	
+
 	Utilities::Matrix result(_cols, _rows);
 
 	for (unsigned long i = 0; i < _rows; i++)
@@ -181,12 +335,15 @@ bool Utilities::Matrix::checkSize(Utilities::MatrixOperations MO, Utilities::Mat
 	switch (MO)
 	{
 	case ADDITION:
+	case SUBTRACTION:
 		if (a.getRows() != b.getRows())
 			return false;
 		if (a.getCols() != b.getCols())
 			return false;
 		break;
 	case MULTIPLICATION:
+		if (a.getCols() != b.getRows())
+			return false;
 		break;
 	default:
 		return false;
