@@ -5,54 +5,26 @@
 #include <opencv2\highgui.hpp>
 
 #include "NeuralNetwork\Node.h"
+#include "NeuralNetwork\SimpleNetwork.h"
 
 #include "GUI\SimpleScreen.h"
 
-#include "Matrix\Matrix.h"
+#include <Matrix\Matrix.h>
 
 #define AMOUNT_OF_TRAINING_POINTS 10000
 
 int main(int argc, char** argv)
 {
 	srand(time(NULL));
-	Utilities::Matrix m1(2, 3);
-	m1.randomize();
-	m1.printToCLI();
-	//m1.add(2);
-	m1 += 2;
-	m1.printToCLI();
 
-	Utilities::Matrix m2(2, 3);
-	m2.randomize();
-	m2.printToCLI();
+	NeuralNetwork::SimpleNetwork network(2, 4, 1);
 
-	Utilities::Matrix m3;
-	Utilities::Matrix m4;
+	float* tst = (float*)malloc(sizeof(float) * 2);
+	tst[0] = 0.5f;
+	tst[1] = 0.6f;
 
-	try
-	{
-		m3 = m1 + m2;
-	}
-	catch (Utilities::matrixException &mE)
-	{
-		printf("%s\r\n", mE.what());
-	}
-
-	try
-	{
-		m1 += m2;
-	}
-	catch (Utilities::matrixException &mE)
-	{
-		printf("%s\r\n", mE.what());
-	}
-
-	m1.printToCLI();
-
-	m3.printToCLI();
-
-	m4 = m3.transpose();
-	m4.printToCLI();
+	float* prediction = network.predict(tst);
+	printf("guess = %.2f\r\n", prediction[0]);
 
 	system("pause");
 	return 1;

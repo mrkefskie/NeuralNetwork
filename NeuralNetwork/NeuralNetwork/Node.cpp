@@ -29,7 +29,7 @@ float NeuralNetwork::Node::guess(float* inputs)
 	switch (_activationType)
 	{
 	case SIGN:
-		output = ActivationFunctions::sign(sum);
+		output = ActivationFunctions::activate(SIGN_ACTIVATION, sum);
 		break;
 	default:
 		break;
