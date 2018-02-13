@@ -79,7 +79,7 @@ void GUI::SimpleScreen::render(NeuralNetwork::Node n, Data::Point *dp, unsigned 
 			cv::circle(_image, cv::Point(point.pixelX, point.pixelY), 2, cv::Scalar(0, 0, 255), 1);
 		}
 	}
-	
+
 	//if (lineType != Data::STRAIGHT)
 	{
 	}
@@ -96,6 +96,40 @@ void GUI::SimpleScreen::render(NeuralNetwork::Node n, Data::Point *dp, unsigned 
 
 		cv::line(_image, cv::Point(p0.pixelX, p0.pixelY), cv::Point(p1.pixelX, p1.pixelY), cv::Scalar(255, 255, 0));
 	}
+	cv::namedWindow("Output");
+	cv::imshow("Output", _image);
+}
+
+void GUI::SimpleScreen::render(NeuralNetwork::SimpleNetwork n, Data::DATA_TYPE * d, unsigned long l)
+{
+	setImage(SIZE, SIZE);
+
+	int scale = 100;
+
+	int cols = SIZE / scale;
+	int rows = SIZE / scale;
+
+	for (int i = 0; i < cols; i++)
+	{
+		for (int j = 0; j < rows; j++)
+		{
+			float x1 = (float)i / (float)cols;
+			float x2 = (float)j / (float)cols;
+
+			Data::DATA_TYPE data;
+			data.input_length = 2;
+			data.inputs = (float*)malloc(sizeof(float) * data.input_length);
+
+			data.inputs[0] = x1;
+			data.inputs[1] = x2;
+
+			float* y = n.predict(data.inputs);
+
+			int c = y[0] * 255;
+			cv::rectangle(_image, cv::Rect(i*scale, j*scale, scale, scale), cv::Scalar(c,c,c), CV_FILLED);
+		}
+	}
+
 	cv::namedWindow("Output");
 	cv::imshow("Output", _image);
 }

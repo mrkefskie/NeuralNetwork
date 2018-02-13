@@ -5,6 +5,9 @@
 
 #include "../Data/Point.h"
 #include "../Data/DividingLines.h"
+#include "../Data/Data.h"
+
+#include "../NeuralNetwork/SimpleNetwork.h"
 #include "../NeuralNetwork/Node.h"
 
 #include <opencv2\core.hpp>
@@ -26,6 +29,7 @@ namespace GUI
 		~SimpleScreen();
 
 		void render(NeuralNetwork::Node n, Data::Point *p, unsigned long l);
+		void render(NeuralNetwork::SimpleNetwork n, Data::DATA_TYPE* d, unsigned long l);
 
 		void setImage(int w, int h);
 
