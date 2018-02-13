@@ -71,14 +71,10 @@ void Utilities::Matrix::randomize()
 	}
 }
 
-Utilities::Matrix Utilities::Matrix::operator=(Utilities::Matrix m)
+/*Utilities::Matrix Utilities::Matrix::operator=(Utilities::Matrix m)
 {
-	_rows = m.getRows();
-	_cols = m.getCols();
-	_data = m.getData();
-
-	return *this;
-}
+	return m + 0;
+}*/
 
 #pragma region Addition
 void Utilities::Matrix::add(const float n)
@@ -304,7 +300,7 @@ Utilities::Matrix Utilities::Matrix::transpose(Utilities::Matrix m)
 
 	for (unsigned long i = 0; i < m.getRows(); i++)
 	{
-		for (unsigned long j = 0; j < m.getRows(); j++)
+		for (unsigned long j = 0; j < m.getCols(); j++)
 		{
 			result.setData(j, i, m.getData(i, j));
 		}

@@ -22,7 +22,7 @@ TEST(MATRIX, AddScalarToMatrix) {
 	{
 		for (unsigned long j = 0; j < r.getCols(); j++)
 		{
-			EXPECT_FLOAT_EQ(data-1, m.getData(i, j));
+			EXPECT_FLOAT_EQ(data - 1, m.getData(i, j));
 			EXPECT_FLOAT_EQ(data++, r.getData(i, j));
 		}
 	}
@@ -46,7 +46,7 @@ TEST(MATRIX, AddMatrixToMatrix)
 	}
 
 	Utilities::Matrix r = m + n;
-	
+
 	d1 = 1.f;
 	d2 = 10.f;
 
@@ -204,6 +204,64 @@ TEST(MATRIX, MultiplyMatrixWithMatrix)
 		}
 	}
 }
+
+TEST(MATRIX, TransposeMatrixCheckForSize)
+{
+	srand(time(NULL));
+
+	int rows = rand() % (1000 - 10 + 1) + 10;
+	int cols = rand() % (1000 - 10 + 1) + 10;
+
+	Utilities::Matrix m(rows, cols);
+	m.randomize();
+
+	Utilities::Matrix m_T = m.transpose();
+
+
+	ASSERT_EQ(cols, m_T.getRows());
+	ASSERT_EQ(rows, m_T.getCols());
+}
+
+TEST(MATRIX, TransposeMatrixCheckForValues)
+{
+	int size = rand() % (1000 - 10 + 1) + 10;
+
+	Utilities::Matrix m(size, size);
+	m.randomize();
+
+	Utilities::Matrix m_T = m.transpose();
+
+	ASSERT_EQ(size, m_T.getRows());
+	ASSERT_EQ(size, m_T.getCols());
+
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = 0; j < size; j++)
+		{
+			ASSERT_FLOAT_EQ(m.getData(i, j), m_T.getData(j, i));
+		}
+	}
+}
+
+TEST(MATRIX, CopyMatrix)
+{
+	Utilities::Matrix org(2, 2);
+	org.setData(0, 0, 0);
+	org.setData(0, 1, 1);
+	org.setData(1, 0, 2);
+	org.setData(1, 1, 3);
+
+	org.printToCLI();
+
+	Utilities::Matrix cpy = org+0;
+	cpy.setData(0, 0, 10);
+
+	org.printToCLI();
+	cpy.printToCLI();
+
+	ASSERT_FLOAT_EQ(0.f, org.getData(0, 0));
+}
+
 
 TEST(MATRIX, FromArray)
 {

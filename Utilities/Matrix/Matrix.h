@@ -44,9 +44,8 @@ namespace Utilities
 		Matrix operator*(const float n);
 		void operator*=(const float n);
 		Matrix operator*(Matrix n);
-		void operator*=(Matrix n);
 
-		Matrix operator=(Matrix m);
+		//Matrix operator=(Matrix m);
 
 
 
