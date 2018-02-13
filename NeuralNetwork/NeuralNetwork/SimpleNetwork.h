@@ -1,7 +1,9 @@
 #ifndef _NN_SIMPLENETWORK_H
 #define _NN_SIMPLENETWORK_H
 
-#include <Matrix\Matrix.h>
+//#include <Matrix\Matrix.h>
+
+#include <Eigen/Dense>
 
 #include "ActivationFunctions.h"
 
@@ -24,11 +26,15 @@ namespace NeuralNetwork
 		unsigned int _hidden_nodes;
 		unsigned int _output_nodes;
 
-		Utilities::Matrix _weights_ih;
-		Utilities::Matrix _weights_ho;
+		Eigen::MatrixXd _weights_ih;
+		Eigen::MatrixXd _weights_ho;
+		//Utilities::Matrix _weights_ih;
+		//Utilities::Matrix _weights_ho;
 
-		Utilities::Matrix _bias_h;
-		Utilities::Matrix _bias_o;
+		Eigen::MatrixXd _bias_h;
+		Eigen::MatrixXd _bias_o;
+		//Utilities::Matrix _bias_h;
+		//Utilities::Matrix _bias_o;
 
 		float _learningRate;
 	};

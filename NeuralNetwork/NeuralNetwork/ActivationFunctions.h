@@ -3,6 +3,8 @@
 
 #include <math.h>
 
+#include <Eigen\Dense>
+
 namespace NeuralNetwork
 {
 	typedef enum
@@ -17,6 +19,9 @@ namespace NeuralNetwork
 	public:
 		static float activate(activationFunction F, float x);
 		static float deActivate(activationFunction F, float y);
+
+		static Eigen::MatrixXd activate(activationFunction F, Eigen::MatrixXd x);
+		static Eigen::MatrixXd deActivate(activationFunction F, Eigen::MatrixXd y);
 
 	private:
 		static float sigmoid(float x)
