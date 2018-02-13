@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="Data\DividingLines.h" />
     <ClInclude Include="Data\Point.h" />
+    <ClInclude Include="Data\Data.h" />
     <ClInclude Include="GUI\SimpleScreen.h" />
     <ClInclude Include="NeuralNetwork\ActivationFunctions.h" />
     <ClInclude Include="NeuralNetwork\Node.h" />

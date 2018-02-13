@@ -56,5 +56,8 @@
     <ClInclude Include="NeuralNetwork\SimpleNetwork.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Data\Data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
