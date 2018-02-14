@@ -134,9 +134,6 @@
     <ProjectReference Include="..\thirdparty\opencv\build\INSTALL.vcxproj">
       <Project>{b4f34632-ff5a-332e-96bc-8bc0e8afbc1f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\Utilities\Utilities.vcxproj">
-      <Project>{d7b63b66-be5d-4e18-a676-9e5503fcc660}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data\DividingLines.h" />
