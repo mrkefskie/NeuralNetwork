@@ -38,18 +38,18 @@ int main(int argc, char** argv)
 
 	XOR[2].inputs[0] = 1;
 	XOR[2].inputs[1] = 0;
-	XOR[2].outputs[0] = 0;
+	XOR[2].outputs[0] = 1;
 
 	XOR[3].inputs[0] = 1;
 	XOR[3].inputs[1] = 1;
 	XOR[3].outputs[0] = 0;
 
-	NeuralNetwork::SimpleNetwork network(2, 2, 1);
+	NeuralNetwork::SimpleNetwork network(2, 2, 1, 0.01);
 
 	GUI::SimpleScreen screen;
 
-	float* prediction = network.predict(XOR[2].inputs);
-	printf("guess = %.2f\r\n", prediction[0]);
+	float* prediction = network.predict(XOR[0].inputs);
+	//printf("guess = %.2f\r\n", prediction[0]);
 
 	//network.train(XOR[0].inputs, XOR[0].outputs);
 
@@ -59,16 +59,16 @@ int main(int argc, char** argv)
 
 		network.train(XOR[random].inputs, XOR[random].outputs);
 
-		prediction = network.predict(XOR[0].inputs);
-		printf("iteration: %d\t\tguess = %.2f\r\n", i, prediction[0]);
-
 		if (cv::waitKey(1) == 27)
 		{
 			cv::destroyAllWindows();
 			break;
 		}
 		if (i % 100 == 0)
+		{
 			screen.render(network, XOR, 4);
+			//system("pause");
+		}
 	}
 
 	prediction = network.predict(XOR[0].inputs);

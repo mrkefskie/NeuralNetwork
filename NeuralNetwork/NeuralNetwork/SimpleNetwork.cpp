@@ -86,6 +86,7 @@ void NeuralNetwork::SimpleNetwork::train(float * input_data, float * output_data
 	{
 		inputs(i, 0) = input_data[i];
 	}
+	//std::cout << std::endl << "inputs:" << std::endl << inputs << std::endl;
 
 	// Convert targets to matrix
 	Eigen::MatrixXd targets(_output_nodes, 1);
@@ -93,39 +94,39 @@ void NeuralNetwork::SimpleNetwork::train(float * input_data, float * output_data
 	{
 		targets(i, 0) = output_data[i];
 	}
+	//std::cout << std::endl << "targets:" << std::endl << targets << std::endl;
 
 	// Calculate the hidden layer
-	Eigen::MatrixXd hidden = _weights_ih * inputs;
-	hidden = ActivationFunctions::activate(SIGMOID_ACTIVATION, hidden);
+	Eigen::MatrixXd hidden_inputs = _weights_ih * inputs;
+	//std::cout << std::endl << "hidden_inputs:" << std::endl << hidden_inputs << std::endl;
 
-	// Calculate the output layer
-	Eigen::MatrixXd outputs = _weights_ho * hidden;
-	outputs = ActivationFunctions::activate(SIGMOID_ACTIVATION, outputs);
+	Eigen::MatrixXd hidden_outputs = ActivationFunctions::activate(SIGMOID_ACTIVATION, hidden_inputs);
+	//std::cout << std::endl << "hidden_outputs:" << std::endl << hidden_outputs << std::endl;
 
-	// Calculate the output errors
-	Eigen::MatrixXd output_errors = targets - outputs;
-	// Calculate the hidden errors
+	// Calculate the final output layer
+	Eigen::MatrixXd final_inputs = _weights_ho * hidden_outputs;
+	//std::cout << std::endl << "final_inputs:" << std::endl << final_inputs << std::endl;
+
+	Eigen::MatrixXd final_outputs = ActivationFunctions::activate(SIGMOID_ACTIVATION, final_inputs);
+	//std::cout << std::endl << "final_outputs:" << std::endl << final_outputs << std::endl;
+
+	// Output layer error is target - actual
+	Eigen::MatrixXd output_errors = targets - final_outputs;
+	//std::cout << std::endl << "output_errors:" << std::endl << output_errors << std::endl;
+
+	// Hidden layer error is the output_errors, split by weights, recombined at hidden nodes
 	Eigen::MatrixXd hidden_errors = _weights_ho.transpose() * output_errors;
+	//std::cout << std::endl << "hidden_errors:" << std::endl << hidden_errors << std::endl;
 
 	// Update the weights for the links between the hidden and output layers
-	Eigen::MatrixXd deActivate = ActivationFunctions::deActivate(SIGMOID_ACTIVATION, outputs);
-	_weights_ho += _learningRate * (output_errors * deActivate * hidden.transpose());
-
-	std::cout << std::endl << "HIDDEN:" << std::endl << hidden << std::endl;
+	Eigen::MatrixXd deActivate_outputs = ActivationFunctions::deActivate(SIGMOID_ACTIVATION, final_outputs);
+	_weights_ho += _learningRate * (output_errors * deActivate_outputs * hidden_outputs.transpose());
+	//std::cout << std::endl << "_weights_ho:" << std::endl << _weights_ho << std::endl;
 
 	// Update the weights for the links between the input and hidden layers
-	Eigen::MatrixXd deActivate1 = ActivationFunctions::deActivate(SIGMOID_ACTIVATION, hidden);
-
-	std::cout << std::endl << "DEACTIVATE:" << std::endl << deActivate1 << std::endl;
-
-	Eigen::MatrixXd tmp = hidden_errors * deActivate1.transpose();
-
-	std::cout << std::endl << "HIDDEN_ERRORS * DEACTIVATE:" << std::endl << tmp << std::endl;
-
-	tmp *= inputs;
-	std::cout << std::endl << "TMP * INPUTS:" << std::endl << tmp << std::endl;
-	tmp = tmp * _learningRate;
-	std::cout << std::endl << "TMP * LEARNINGRATE:" << std::endl << tmp << std::endl;
-
-	_weights_ih = _weights_ih + tmp;
+	Eigen::MatrixXd deActivate_hidden = ActivationFunctions::deActivate(SIGMOID_ACTIVATION, hidden_outputs);
+	//Eigen::MatrixXd tmp1 = hidden_errors.cwiseProduct(deActivate_hidden);
+	//std::cout << std::endl << "tmp1:" << std::endl << tmp1 << std::endl;
+	_weights_ih += _learningRate * (hidden_errors.cwiseProduct(deActivate_hidden) * inputs.transpose());
+	//std::cout << std::endl << "_weights_ih:" << std::endl << _weights_ih << std::endl;
 }

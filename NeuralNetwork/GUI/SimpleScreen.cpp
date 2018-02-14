@@ -104,14 +104,14 @@ void GUI::SimpleScreen::render(NeuralNetwork::SimpleNetwork n, Data::DATA_TYPE *
 {
 	setImage(SIZE, SIZE);
 
-	int scale = 100;
+	int scale = 10;
 
-	int cols = SIZE / scale;
-	int rows = SIZE / scale;
+	int cols = (SIZE / scale);
+	int rows = (SIZE / scale);
 
-	for (int i = 0; i < cols; i++)
+	for (int i = 0; i <= cols; i++)
 	{
-		for (int j = 0; j < rows; j++)
+		for (int j = 0; j <= rows; j++)
 		{
 			float x1 = (float)i / (float)cols;
 			float x2 = (float)j / (float)cols;
@@ -125,8 +125,13 @@ void GUI::SimpleScreen::render(NeuralNetwork::SimpleNetwork n, Data::DATA_TYPE *
 
 			float* y = n.predict(data.inputs);
 
+			//printf("x1: %.2f\tx2: %.2f\t\ty: %.2f\r\n", x1, x2, y[0]);
+
 			int c = y[0] * 255;
 			cv::rectangle(_image, cv::Rect(i*scale, j*scale, scale, scale), cv::Scalar(c,c,c), CV_FILLED);
+
+			free(data.inputs);
+			free(y);
 		}
 	}
 
