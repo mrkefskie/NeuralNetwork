@@ -18,13 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NeuralNetwork\Node.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NeuralNetwork\ActivationFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Data\Point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Data\DividingLines.cpp">
@@ -38,13 +32,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="NeuralNetwork\Node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NeuralNetwork\ActivationFunctions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Point.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Data\DividingLines.h">
@@ -59,13 +47,5 @@
     <ClInclude Include="Data\Data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="NeuralNetwork.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>
